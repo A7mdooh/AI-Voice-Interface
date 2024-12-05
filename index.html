@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>واجهة الذكاء الاصطناعي</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="screen">
@@ -17,6 +16,33 @@
 
     <audio id="audioPlayer"></audio>
 
-    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBGv3JmZB71ztx-PwR_wMmT0f8jZlDDT2U",
+            authDomain: "ai-voice-interface.firebaseapp.com",
+            projectId: "ai-voice-interface",
+            storageBucket: "ai-voice-interface.firebasestorage.app",
+            messagingSenderId: "997645849088",
+            appId: "1:997645849088:web:6929a069d1e7e387b1bee5"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Listen for commands
+        firebase.database().ref("command").on("value", (snapshot) => {
+            const command = snapshot.val();
+            if (command) {
+                const audioPlayer = document.getElementById("audioPlayer");
+                audioPlayer.src = command;
+                audioPlayer.play();
+                firebase.database().ref("command").set(null); // Reset command after playing
+            }
+        });
+    </script>
 </body>
 </html>
