@@ -4,47 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صفحة التحكم</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-        .file {
-            margin: 10px 0;
-            padding: 10px;
-            width: 300px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .file:hover {
-            background-color: #f0f0f0;
-        }
-    </style>
 </head>
 <body>
     <h1>صفحة التحكم</h1>
-    <div class="file" onclick="sendCommand('audio/audio1.mp3')">تشغيل الملف 1</div>
-    <div class="file" onclick="sendCommand('audio/audio2.mp3')">تشغيل الملف 2</div>
-    <div class="file" onclick="sendCommand('audio/audio3.mp3')">تشغيل الملف 3</div>
 
+    https://a7mdooh.github.io/AI-Voice-Interface//audio/audio1.mp3
+    https://a7mdooh.github.io/AI-Voice-Interface//audio/audio2.mp3
+    https://a7mdooh.github.io/AI-Voice-Interface//audio/audio3.mp3
+
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
     <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBGv3JmZB71ztx-PwR_wMmT0f8jZlDDT2U",
+            authDomain: "ai-voice-interface.firebaseapp.com",
+            projectId: "ai-voice-interface",
+            storageBucket: "ai-voice-interface.firebasestorage.app",
+            messagingSenderId: "997645849088",
+            appId: "1:997645849088:web:6929a069d1e7e387b1bee5"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
         function sendCommand(audioFile) {
-            // إرسال أمر تشغيل الملف إلى localStorage
-            localStorage.setItem("playAudioCommand", audioFile);
+            firebase.database().ref("command").set(audioFile);
             alert("تم إرسال الأمر لتشغيل: " + audioFile);
         }
     </script>
