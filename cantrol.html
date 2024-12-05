@@ -8,9 +8,15 @@
 <body>
     <h1>صفحة التحكم</h1>
 
-    https://a7mdooh.github.io/AI-Voice-Interface//audio/audio1.mp3
-    https://a7mdooh.github.io/AI-Voice-Interface//audio/audio2.mp3
-    https://a7mdooh.github.io/AI-Voice-Interface//audio/audio3.mp3
+    <button onclick="sendCommand('https://a7mdooh.github.io/AI-Voice-Interface/audio/audio1.mp3')">
+        تشغيل الملف 1
+    </button>
+    <button onclick="sendCommand('https://a7mdooh.github.io/AI-Voice-Interface/audio/audio2.mp3')">
+        تشغيل الملف 2
+    </button>
+    <button onclick="sendCommand('https://a7mdooh.github.io/AI-Voice-Interface/audio/audio3.mp3')">
+        تشغيل الملف 3
+    </button>
 
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
@@ -30,6 +36,7 @@
         const db = firebase.database();
 
         function sendCommand(audioFile) {
+            // إرسال رابط الملف الصوتي إلى قاعدة البيانات
             firebase.database().ref("command").set(audioFile);
             alert("تم إرسال الأمر لتشغيل: " + audioFile);
         }
