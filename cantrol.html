@@ -21,25 +21,30 @@
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
     <script>
-        // Firebase configuration
+        // إعداد Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBGv3JmZB71ztx-PwR_wMmT0f8jZlDDT2U",
             authDomain: "ai-voice-interface.firebaseapp.com",
             databaseURL: "https://ai-voice-interface-default-rtdb.firebaseio.com",
             projectId: "ai-voice-interface",
-            storageBucket: "ai-voice-interface.firebasestorage.app",
+            storageBucket: "ai-voice-interface.appspot.com",
             messagingSenderId: "997645849088",
             appId: "1:997645849088:web:6929a069d1e7e387b1bee5"
         };
 
-        // Initialize Firebase
+        // تهيئة Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
         function sendCommand(audioFile) {
             // إرسال رابط الملف الصوتي إلى قاعدة البيانات
-            firebase.database().ref("command").set(audioFile);
-            alert("تم إرسال الأمر لتشغيل: " + audioFile);
+            firebase.database().ref("command").set(audioFile)
+                .then(() => {
+                    alert("تم إرسال الأمر لتشغيل: " + audioFile);
+                })
+                .catch((error) => {
+                    console.error("خطأ أثناء إرسال البيانات:", error);
+                });
         }
     </script>
 </body>
