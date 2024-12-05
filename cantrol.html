@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة التحكم</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>صفحة التحكم</h1>
+    <div class="file" onclick="sendCommand('audio/audio1.mp3')">تشغيل الملف 1</div>
+    <div class="file" onclick="sendCommand('audio/audio2.mp3')">تشغيل الملف 2</div>
+    <div class="file" onclick="sendCommand('audio/audio3.mp3')">تشغيل الملف 3</div>
+
+    <script>
+        function sendCommand(audioFile) {
+            // إرسال أمر تشغيل الملف إلى localStorage
+            localStorage.setItem("playAudioCommand", audioFile);
+            alert("تم إرسال الأمر لتشغيل: " + audioFile);
+        }
+    </script>
+</body>
+</html>
