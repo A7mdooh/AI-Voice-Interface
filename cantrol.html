@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صفحة التحكم</title>
+
+    <!-- إضافة مكتبات Firebase الصحيحة -->
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+
     <script>
         // إعداد Firebase
         const firebaseConfig = {
@@ -26,7 +29,7 @@
         function sendCommand(audioFile) {
             firebase.database().ref("command").set(audioFile)
                 .then(() => {
-                    alert("تم إرسال الأمر لتشغيل: " + audioFile);
+                    alert("تم إرسال الأمر بنجاح: " + audioFile);
                 })
                 .catch((error) => {
                     console.error("خطأ أثناء إرسال البيانات:", error);
@@ -37,6 +40,7 @@
 <body>
     <h1>صفحة التحكم</h1>
 
+    <!-- أزرار لإرسال الأوامر -->
     <button onclick="sendCommand('https://a7mdooh.github.io/AI-Voice-Interface/audio/audio1.mp3')">
         تشغيل الملف 1
     </button>
